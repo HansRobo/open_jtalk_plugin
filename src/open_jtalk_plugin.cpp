@@ -20,12 +20,12 @@ std::filesystem::path open_jtalk_plugin::OpenJTalkPlugin::generateSoundFile(
   std::string generated_file_path = output_directory / (file_name + ".wav");
   std::stringstream command_ss;
   // clang-format off
-  command_ss << "open_jtalk"
+  command_ss << "echo " << input_text
+             << " | open_jtalk"
              << " -x "  << dictionary_path
              << " -m "  << hts_voice_path
              << " -ow " << generated_file_path
-             << " -r "  << speed_rate
-             << " "     << input_text;
+             << " -r "  << speed_rate;
   // clang-format on
   system(command_ss.str().c_str());
 
@@ -46,5 +46,6 @@ open_jtalk_plugin::OpenJTalkPlugin::getParametersDefault() const {
 void open_jtalk_plugin::OpenJTalkPlugin::importParameters(
     const std::unordered_map<std::string, std::string> &parameters) {
   dictionary_path = parameters.at("dictionary_path");
-  hts_voice_path = parameters.at("hts_voice");
+  hts_voice_path = parameters.at("hts_voice_path");
+  speed_rate = parameters.at("speed_rate");
 }
