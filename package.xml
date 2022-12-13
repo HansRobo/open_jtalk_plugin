@@ -23,6 +23,6 @@
 
     <export>
         <build_type>ament_cmake</build_type>
-        <speak_ros plugin="${prefix}/plugin_description.xml" />
+        <speak_ros plugin="${prefix}/plugins.xml" />
     </export>
 </package>
