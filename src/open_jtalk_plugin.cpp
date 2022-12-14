@@ -15,8 +15,9 @@
 #include "open_jtalk_plugin/open_jtalk_plugin.hpp"
 
 std::filesystem::path open_jtalk_plugin::OpenJTalkPlugin::generateSoundFile(
-    const std::string input_text, const std::filesystem::path output_directory,
-    const std::string file_name) {
+  const std::string input_text, const std::filesystem::path output_directory,
+  const std::string file_name)
+{
   std::string generated_file_path = output_directory / (file_name + ".wav");
   std::stringstream command_ss;
   // clang-format off
@@ -32,19 +33,20 @@ std::filesystem::path open_jtalk_plugin::OpenJTalkPlugin::generateSoundFile(
   return std::filesystem::path(generated_file_path);
 }
 
-std::vector<speak_ros::Parameter>
-open_jtalk_plugin::OpenJTalkPlugin::getParametersDefault() const {
+std::vector<speak_ros::Parameter> open_jtalk_plugin::OpenJTalkPlugin::getParametersDefault() const
+{
   return {
-      // clang-format off
+    // clang-format off
       {"dictionary_path", "dictionary path", "/var/lib/mecab/dic/open-jtalk/naist-jdic"},
       {"hts_voice_path", "hts voice file path", "/usr/share/hts-voice/nitech-jp-atr503-m001/nitech_jp_atr503_m001.htsvoice"},
       {"speed_rate", "speed rate", "1.0"}
-      // clang-format on
+    // clang-format on
   };
 }
 
 void open_jtalk_plugin::OpenJTalkPlugin::importParameters(
-    const std::unordered_map<std::string, std::string> &parameters) {
+  const std::unordered_map<std::string, std::string> & parameters)
+{
   dictionary_path = parameters.at("dictionary_path");
   hts_voice_path = parameters.at("hts_voice_path");
   speed_rate = parameters.at("speed_rate");

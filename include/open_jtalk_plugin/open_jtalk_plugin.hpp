@@ -17,31 +17,30 @@
 
 #include <speak_ros/speak_ros_plugin_base.hpp>
 
-namespace open_jtalk_plugin {
-class OpenJTalkPlugin : public speak_ros::SpeakROSPluginBase {
+namespace open_jtalk_plugin
+{
+class OpenJTalkPlugin : public speak_ros::SpeakROSPluginBase
+{
 public:
   OpenJTalkPlugin() : speak_ros::SpeakROSPluginBase() {}
 
   std::string getPluginName() const override { return "open_jtalk_plugin"; }
 
-  std::filesystem::path
-  generateSoundFile(const std::string input_text,
-                    const std::filesystem::path output_directory,
-                    const std::string file_name) override;
+  std::filesystem::path generateSoundFile(
+    const std::string input_text, const std::filesystem::path output_directory,
+    const std::string file_name) override;
 
   std::vector<speak_ros::Parameter> getParametersDefault() const override;
 
-  void importParameters(
-      const std::unordered_map<std::string, std::string> &parameters) override;
+  void importParameters(const std::unordered_map<std::string, std::string> & parameters) override;
 
   std::string dictionary_path;
   std::string hts_voice_path;
   std::string speed_rate;
 };
-} // namespace open_jtalk_plugin
+}  // namespace open_jtalk_plugin
 
 #include <pluginlib/class_list_macros.hpp>
-PLUGINLIB_EXPORT_CLASS(open_jtalk_plugin::OpenJTalkPlugin,
-                       speak_ros::SpeakROSPluginBase)
+PLUGINLIB_EXPORT_CLASS(open_jtalk_plugin::OpenJTalkPlugin, speak_ros::SpeakROSPluginBase)
 
-#endif // OPEN_JTALK_PLUGIN__OPEN_JTALK_PLUGIN_HPP_
+#endif  // OPEN_JTALK_PLUGIN__OPEN_JTALK_PLUGIN_HPP_
